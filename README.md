@@ -65,3 +65,9 @@ This is deliberately a framework-free first draft so it is easy for any B.E.N. s
 - The early community-channel list has been removed. The section now introduces B.E.N.'s culture through creativity, benevolence and meliorism instead.
 
 Palette used: Cream `#FDFAF2`, Ink `#181818`, Banner red `#CF191B`, Benevolent gold `#FDB41F`, Warm orange `#E94B28`, Teal `#49847C`, Soft gold `#F5DCA3`.
+
+## v0.4 robust image loading fix
+
+The visible B.E.N. logo and banner still use the normal `assets/` files first, but `index.html` now contains compact embedded fallbacks of both supplied images. If GitHub Pages cannot resolve the assets path, the browser automatically swaps to the embedded copy instead of showing a broken image.
+
+This specifically protects against the common GitHub Pages issue where `index.html` is deployed from one folder while `assets/` is uploaded or served from another. Keep the `assets` folder in the repository anyway; the embedded copies are a fail-safe rather than a replacement for normal site assets.
