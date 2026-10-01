@@ -7,12 +7,13 @@
   <meta name="description" content="B.E.N. — Benevolent Energy Network. Leave things better. People before ego. Build something worth passing on." />
   <meta property="og:title" content="B.E.N. — Benevolent Energy Network" />
   <meta property="og:description" content="A community built around benevolent energy: leave things better, put people before ego, and build something worth passing on." />
-  <meta property="og:image" content="assets/ben-logo.png" />
+  <meta property="og:image" content="./assets/ben-logo.jpg" />
   <title>B.E.N. — Benevolent Energy Network</title>
-  <link rel="icon" href="assets/ben-logo.png" />
+  <link rel="icon" type="image/jpeg" href="./assets/ben-logo.jpg" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="palette-field" aria-hidden="true"></div>
   <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
   <div class="cursor-aura" aria-hidden="true"></div>
   <div class="noise" aria-hidden="true"></div>
@@ -20,7 +21,7 @@
   <header class="site-header" id="top">
     <nav class="nav-shell" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="B.E.N. home">
-        <img src="assets/ben-logo.png" alt="B.E.N. logo" />
+        <img src="./assets/ben-logo.jpg" onerror="this.onerror=null;this.src='./assets/ben-logo.png';" alt="B.E.N. logo" />
         <span><strong>B.E.N.</strong><small>Benevolent Energy Network</small></span>
       </a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="siteMenu" aria-label="Toggle menu">☰</button>
@@ -28,7 +29,7 @@
         <a href="#about">Why B.E.N.</a>
         <a href="#principles">Principles</a>
         <a href="#test">The B.E.N. Test</a>
-        <a href="#community">Community</a>
+        <a href="#community">The Network</a>
         <a class="nav-cta" href="#join">Bring good energy</a>
       </div>
     </nav>
@@ -54,7 +55,7 @@
       <div class="hero-visual reveal" data-delay="120">
         <div class="banner-frame tilt-card">
           <div class="image-glow" aria-hidden="true"></div>
-          <img src="assets/ben-banner.png" alt="Hello, we are B.E.N. — Benevolent Energy Network — #probablyacult" />
+          <img src="./assets/ben-banner.png" alt="Hello, we are B.E.N. — Benevolent Energy Network — #probablyacult" />
         </div>
         <div class="floating-note note-one">🌞 leave things better</div>
         <div class="floating-note note-two">🖤 keep it human</div>
@@ -78,7 +79,7 @@
           <blockquote>“Authority exists to protect the network, not to own it.”</blockquote>
         </div>
         <div class="logo-stage reveal tilt-card" data-delay="100">
-          <img src="assets/ben-logo.png" alt="B.E.N. Benevolent Energy Network logo" />
+          <img src="./assets/ben-logo.jpg" onerror="this.onerror=null;this.src='./assets/ben-logo.png';" alt="B.E.N. Benevolent Energy Network logo" />
           <div class="logo-rings" aria-hidden="true"><i></i><i></i><i></i></div>
         </div>
       </div>
@@ -147,11 +148,16 @@
 
     <section class="community section-pad" id="community">
       <div class="section-heading reveal">
-        <div><div class="section-kicker">Broad rooms, fewer walls</div><h2>One network. Plenty of ways in.</h2></div>
-        <p>We keep community spaces broad, welcoming and useful instead of creating dozens of tiny cliques.</p>
+        <div><div class="section-kicker">What kind of network are we building?</div><h2>Creativity. Benevolence. Meliorism.</h2></div>
+        <p>Not a collection of cliques. A culture that gives people room to make, contribute, care and improve things together.</p>
       </div>
-      <div class="channel-cloud reveal" aria-label="Suggested B.E.N. community spaces">
-        <span>🌞 The Beniverse</span><span>🎲🎮 Ben There, Played That</span><span>🎨✍️ The Fine Bens</span><span>🎵🎧 Ben in Tune</span><span>🎬📚 Benter-tainment</span><span>🧠💚 Well-Ben-ing</span><span>🏃🚴 Bendurance</span><span>🌍✈️ Ben There, Done That</span><span>🧠📚 Benlightenment</span><span>💻🔧 The Bengine Room</span><span>💼💡 Benovators</span><span>🤝💰 Benefits Exchange</span><span>🎉📅 Bensemble</span><span>😂🔥 BENergy Memes</span><span>🙌❤️ Lend a Ben</span><span>💬🤔 Recombendations</span>
+      <div class="community-manifesto reveal">
+        <p><strong>B.E.N. is for people who believe creativity is a form of contribution, benevolence is something you practise, and meliorism — the belief that the world can be made better through human effort — is worth acting on.</strong> We want ideas to collide, skills to be shared, people to make things together, and optimism to have practical consequences. Whether someone arrives with art, music, games, knowledge, humour, care, time, experience or simply the willingness to help, the aim is the same: turn good energy into something useful, generous and contagious.</p>
+        <div class="ethos-triad" aria-label="B.E.N. community ethos">
+          <span>✦ Creativity makes possibilities</span>
+          <span>♥ Benevolence makes them matter</span>
+          <span>↗ Meliorism turns them into action</span>
+        </div>
       </div>
     </section>
 
@@ -162,7 +168,7 @@
         <h2>Bring something good.<br/>Leave with more energy.</h2>
         <p>B.E.N. is starting small on purpose. We’re building the culture first, then the crowd.</p>
         <div class="join-actions">
-          <a class="button primary magnetic" href="#top">Explore from the top ↑</a>
+          <button class="button primary magnetic" type="button" data-scroll-top>Explore from the top ↑</button>
           <button class="button ghost copy-button magnetic" data-copy="#probablyacult">Copy #probablyacult</button>
         </div>
         <small class="join-note">Community links coming as the network opens.</small>
@@ -171,9 +177,9 @@
   </main>
 
   <footer>
-    <div class="footer-brand"><img src="assets/ben-logo.png" alt=""/><div><strong>B.E.N.</strong><span>Benevolent Energy Network</span></div></div>
+    <div class="footer-brand"><img src="./assets/ben-logo.jpg" onerror="this.onerror=null;this.src='./assets/ben-logo.png';" alt=""/><div><strong>B.E.N.</strong><span>Benevolent Energy Network</span></div></div>
     <p>Leave things better. Keep it human. Build something worth passing on.</p>
-    <a href="#top">Back to the light ↑</a>
+    <button class="footer-top" type="button" data-scroll-top>Back to the light ↑</button>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite">Copied.</div>

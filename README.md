@@ -55,3 +55,13 @@ The site supports:
 ## Note
 
 This is deliberately a framework-free first draft so it is easy for any B.E.N. steward to understand and maintain.
+
+
+## v0.2 changes
+
+- The B.E.N. logo now uses an optimised JPEG as the primary browser image, with the original PNG retained as a fallback.
+- The full palette now rotates automatically every few seconds and advances again when a visitor clicks or interacts with the page. Cursor position also shifts the ambient colour field.
+- The bottom and footer back-to-top controls now use explicit JavaScript scrolling for reliable GitHub Pages behaviour.
+- The early community-channel list has been removed. The section now introduces B.E.N.'s culture through creativity, benevolence and meliorism instead.
+
+Palette used: Cream `#FDFAF2`, Ink `#181818`, Banner red `#CF191B`, Benevolent gold `#FDB41F`, Warm orange `#E94B28`, Teal `#49847C`, Soft gold `#F5DCA3`.

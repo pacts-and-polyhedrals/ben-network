@@ -6,11 +6,50 @@
   const menuToggle = document.querySelector('.menu-toggle');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+
+  // Living B.E.N. palette. The colours rotate over time and each user click
+  // nudges the site into the next combination. Readability-critical surfaces
+  // remain cream/ink while the energy around them changes.
+  const paletteStates = [
+    ['#CF191B','#FDB41F','#49847C','#E94B28'],
+    ['#FDB41F','#49847C','#E94B28','#CF191B'],
+    ['#49847C','#E94B28','#F5DCA3','#FDB41F'],
+    ['#E94B28','#F5DCA3','#CF191B','#49847C'],
+    ['#F5DCA3','#CF191B','#FDB41F','#181818'],
+    ['#181818','#FDB41F','#E94B28','#49847C'],
+    ['#FDB41F','#CF191B','#49847C','#F5DCA3']
+  ];
+  let paletteIndex = 0;
+  let palettePulseTimer;
+
+  const applyPalette = (index, pulse = false) => {
+    paletteIndex = (index + paletteStates.length) % paletteStates.length;
+    const [primary, secondary, tertiary, fourth] = paletteStates[paletteIndex];
+    root.style.setProperty('--live-primary', primary);
+    root.style.setProperty('--live-secondary', secondary);
+    root.style.setProperty('--live-tertiary', tertiary);
+    root.style.setProperty('--live-fourth', fourth);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', secondary);
+    if (pulse && !reducedMotion) {
+      document.body.classList.add('palette-pulse');
+      clearTimeout(palettePulseTimer);
+      palettePulseTimer = setTimeout(() => document.body.classList.remove('palette-pulse'), 520);
+    }
+  };
+
+  const nextPalette = (pulse = false) => applyPalette(paletteIndex + 1, pulse);
+  applyPalette(0);
+  if (!reducedMotion) setInterval(() => nextPalette(false), 6500);
+
+  document.addEventListener('click', () => nextPalette(true), { passive: true });
+
   // Cursor-reactive background and aura.
   if (!reducedMotion) {
     window.addEventListener('pointermove', (e) => {
       root.style.setProperty('--mouse-x', `${e.clientX}px`);
       root.style.setProperty('--mouse-y', `${e.clientY}px`);
+      root.style.setProperty('--palette-x', `${(e.clientX / window.innerWidth * 100).toFixed(1)}%`);
+      root.style.setProperty('--palette-y', `${(e.clientY / window.innerHeight * 100).toFixed(1)}%`);
       if (aura) {
         aura.style.left = `${e.clientX}px`;
         aura.style.top = `${e.clientY}px`;
@@ -107,6 +146,17 @@
     updateMeter();
   }));
   updateMeter();
+
+
+  // Explicit back-to-top controls. This is more reliable on static hosts than
+  // relying only on fragment navigation, and still respects reduced motion.
+  const goTop = (event) => {
+    event?.preventDefault?.();
+    window.scrollTo({ top: 0, left: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    history.replaceState(null, '', `${location.pathname}${location.search}`);
+  };
+  document.querySelectorAll('[data-scroll-top]').forEach(control => control.addEventListener('click', goTop));
+  document.querySelectorAll('a[href="#top"]').forEach(link => link.addEventListener('click', goTop));
 
   // Copy playful hashtag.
   const toast = document.getElementById('toast');

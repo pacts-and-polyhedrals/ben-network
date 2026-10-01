@@ -243,3 +243,143 @@ footer a { color:var(--ink);font-weight:850; }
   .cursor-aura { display:none; }
   .reveal { opacity:1;transform:none; }
 }
+
+
+/* v0.2 — living palette + community manifesto */
+@property --live-primary { syntax: '<color>'; inherits: true; initial-value: #CF191B; }
+@property --live-secondary { syntax: '<color>'; inherits: true; initial-value: #FDB41F; }
+@property --live-tertiary { syntax: '<color>'; inherits: true; initial-value: #49847C; }
+@property --live-fourth { syntax: '<color>'; inherits: true; initial-value: #E94B28; }
+
+:root {
+  --live-primary: #CF191B;
+  --live-secondary: #FDB41F;
+  --live-tertiary: #49847C;
+  --live-fourth: #E94B28;
+  --palette-speed: 2200ms;
+  --palette-x: 18%;
+  --palette-y: 22%;
+  transition: --live-primary var(--palette-speed) ease, --live-secondary var(--palette-speed) ease, --live-tertiary var(--palette-speed) ease, --live-fourth var(--palette-speed) ease;
+}
+
+html { background: var(--cream); }
+body { background: transparent; }
+.palette-field {
+  position: fixed;
+  inset: -12vmax;
+  z-index: -2;
+  pointer-events: none;
+  opacity: .19;
+  background:
+    radial-gradient(circle at var(--palette-x) var(--palette-y), var(--live-primary) 0, transparent 31%),
+    radial-gradient(circle at 83% 18%, var(--live-secondary) 0, transparent 29%),
+    radial-gradient(circle at 72% 82%, var(--live-tertiary) 0, transparent 34%),
+    radial-gradient(circle at 14% 84%, var(--live-fourth) 0, transparent 31%),
+    var(--cream);
+  filter: saturate(.94) contrast(.98);
+  transform: scale(1.02);
+  transition: background var(--palette-speed) ease, opacity 900ms ease, filter 900ms ease;
+}
+body.palette-pulse .palette-field { opacity: .31; filter: saturate(1.08) contrast(1); }
+
+/* Let the same living palette echo through the interface without sacrificing readability. */
+.section-kicker { color: var(--live-primary); transition: color var(--palette-speed) ease; }
+.hero h1 span { color: var(--live-primary); text-shadow: 3px 4px 0 var(--live-secondary); transition: color var(--palette-speed) ease, text-shadow var(--palette-speed) ease; }
+.pulse-dot { background: var(--live-secondary); transition: background var(--palette-speed) ease; }
+.image-glow { background: linear-gradient(135deg,var(--live-primary),var(--live-secondary),var(--live-tertiary)); transition: background var(--palette-speed) ease; }
+.ticker { background: var(--live-secondary); transition: background var(--palette-speed) ease; }
+.ticker-track b { color: var(--live-primary); transition: color var(--palette-speed) ease; }
+.nav-links a:not(.nav-cta)::after { background: var(--live-primary); }
+.scroll-progress span, .meter-track span { background: linear-gradient(90deg,var(--live-primary),var(--live-secondary),var(--live-tertiary)); transition: background var(--palette-speed) ease; }
+.principle-card::before { background: radial-gradient(circle,var(--live-secondary),transparent 70%); transition: background var(--palette-speed) ease, transform .5s ease, opacity .4s ease; }
+.principle-card strong { color: var(--live-primary); transition: color var(--palette-speed) ease; }
+.principle-card:nth-child(3n+2) .icon { color:var(--live-tertiary); }
+.principle-card:nth-child(3n) .icon { color:var(--live-primary); }
+.principle-card .icon { transition: color var(--palette-speed) ease; }
+.logo-rings i { border-color: var(--live-secondary); transition: border-color var(--palette-speed) ease; }
+.logo-rings i:nth-child(2){ border-color: var(--live-tertiary); }
+.logo-rings i:nth-child(3){ border-color: var(--live-primary); }
+.pillar::after { background: var(--live-secondary); transition: background var(--palette-speed) ease; }
+.pillar:nth-child(2)::after { background: var(--live-tertiary); }
+.pillar:nth-child(3)::after { background: var(--live-primary); }
+.join-card { box-shadow:0 30px 85px color-mix(in srgb, var(--live-secondary) 30%, transparent); }
+
+/* New community ethos block: no channels are published before the community is ready. */
+.community-manifesto {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(30px, 6vw, 72px);
+  border: 1px solid var(--border);
+  border-radius: 36px;
+  background: rgba(253,250,242,.82);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px) saturate(1.12);
+}
+.community-manifesto::before {
+  content:"";
+  position:absolute;
+  width:360px;
+  height:360px;
+  right:-130px;
+  top:-180px;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--live-secondary),transparent 68%);
+  opacity:.24;
+  transition:background var(--palette-speed) ease;
+}
+.community-manifesto p {
+  position:relative;
+  z-index:1;
+  max-width:1000px;
+  margin:0;
+  font-size:clamp(1.2rem,2.15vw,2rem);
+  line-height:1.58;
+  letter-spacing:-.02em;
+  color:#3f3b35;
+}
+.community-manifesto p strong { color:var(--ink); }
+.ethos-triad {
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:34px;
+}
+.ethos-triad span {
+  padding:11px 14px;
+  border-radius:999px;
+  background:white;
+  border:1px solid var(--border);
+  font-size:.82rem;
+  font-weight:850;
+  box-shadow:0 8px 22px rgba(34,24,10,.05);
+}
+.ethos-triad span:nth-child(1){ border-color: color-mix(in srgb,var(--live-primary) 40%,transparent); }
+.ethos-triad span:nth-child(2){ border-color: color-mix(in srgb,var(--live-secondary) 55%,transparent); }
+.ethos-triad span:nth-child(3){ border-color: color-mix(in srgb,var(--live-tertiary) 45%,transparent); }
+
+.footer-top {
+  appearance:none;
+  border:0;
+  background:transparent;
+  padding:0;
+  color:var(--ink);
+  font:inherit;
+  font-weight:850;
+  cursor:pointer;
+}
+.footer-top:hover { text-decoration:underline; }
+
+.brand img, .logo-stage img, .footer-brand img { background: var(--cream); }
+
+@media (max-width:620px){
+  .community-manifesto { border-radius:26px; padding:28px 22px; }
+  .community-manifesto p { font-size:1.08rem; }
+  .ethos-triad { flex-direction:column; align-items:stretch; }
+  .ethos-triad span { border-radius:14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .palette-field { transition:none; }
+}
